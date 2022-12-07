@@ -9,15 +9,20 @@ data = text_file.read()
 crates_and_moves = data.split('\n\n')
 instructions = crates_and_moves[1].splitlines()
 crates = crates_and_moves[0]
-result = re.sub(' +', ',', crates)
-buffer = io.StringIO(result)
-print(result)
+
+# result = re.sub(' +', ',', crates)
+# result2 = re.sub('  +', ',', result)
+buffer = io.StringIO(crates)
+print(crates)
 df = pd.read_csv(filepath_or_buffer=buffer, sep=",", header=None, skipfooter=1,
                  engine='python', keep_default_na=False).to_dict('list')
-
+print(df)
 for l in df:
     while ("" in df[l]):
         df[l].remove("")
+
+
+
 
 
 print(f'Beginning Crate Stack: \n {df}')
